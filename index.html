@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연말파티 초대장</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #0d1b2a, #1b263b);
+    color: #fff;
+    text-align: center;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(15px);
+    padding: 35px 25px;
+    border-radius: 30px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    max-width: 420px;
+    width: 90%;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 30px;
+    margin-bottom: 15px;
+    color: #ffd700;
+    text-shadow: 0 0 10px #fff, 0 0 20px #ffd700;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(45deg, #ff6a00, #ee0979);
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 0 20px #ff6a00, 0 0 30px #ee0979;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px #ff6a00, 0 0 40px #ee0979;
+  }
+
+  #message {
+    margin-top: 20px;
+    font-size: 18px;
+  }
+
+  /* 눈 내리기 */
+  .snowflake {
+    position: absolute;
+    top: -10px;
+    color: #fff;
+    font-size: 1em;
+    user-select: none;
+    pointer-events: none;
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+  }
+
+  /* 반짝이는 별 */
+  .star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: twinkle 3s infinite alternate;
+  }
+
+  @keyframes twinkle {
+    from { opacity: 0.3; transform: scale(1); }
+    to { opacity: 1; transform: scale(1.5); }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>🎉 초대합니다! 🎉</h1>
+  <p>2025 연말파티<br>
+     날짜: 2025년 12월 27일<br>
+     장소: 10407 Dearlove Rd, Glenview, IL 60025</p>
+  <div>
+    <button class="btn" onclick="respond('참석')">참석</button>
+    <button class="btn" onclick="respond('불참')">불참</button>
+  </div>
+  <div id="message"></div>
+</div>
+
+<script>
+  // 버튼 클릭 시 메시지 표시
+  function respond(choice) {
+    const msg = document.getElementById('message');
+    if(choice === '참석') {
+      msg.textContent = '감사합니다 👍';
+    } else if(choice === '불참') {
+      msg.textContent = 'ㅜㅜ 알겠습니다';
+    }
+  }
+
+  // 눈 내리기
+  const snowCount = 60;
+  for(let i=0;i<snowCount;i++){
+    const snow = document.createElement('div');
+    snow.classList.add('snowflake');
+    snow.style.left = Math.random() * 100 + 'vw';
+    snow.style.fontSize = Math.random() * 12 + 10 + 'px';
+    snow.style.animationDuration = (Math.random() * 6 + 4) + 's';
+    snow.style.opacity = Math.random();
+    snow.innerText = '❄';
+    document.body.appendChild(snow);
+  }
+
+  // 별 반짝임
+  const starCount = 40;
+  for(let i=0;i<starCount;i++){
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+    document.body.appendChild(star);
+  }
+</script>
+
+</body>
+</html>
